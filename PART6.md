@@ -1,6 +1,12 @@
 # Node-RED Example: Orion - Sentiment Analysis
 
-In this section, you will connect the Orion Onyx using **Node-RED** and the [node-red-contrib-orion](https://flows.nodered.org/node/node-red-contrib-orion) nodes, to the
+In this section you will connect the Orion Onyx using **Node-RED** and the [node-red-contrib-orion](https://flows.nodered.org/node/node-red-contrib-orion) nodes to the Sentiment Analysis node.  The wav file will be transcribed into a text string and then the text will be sent to the Sentiment node. A sentiment score is returned.
+
+### Sentiment Analysis of the Onyx Messages
+
+Download the [flow](flows/) and import it into your Node-RED Editor. 
+
+![Node-RED Sentiment flow](screenshots/NodeRED-Orion-Sentiment-flow.png)
 
 ---
 
