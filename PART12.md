@@ -1,6 +1,13 @@
 # Node-RED Example: Orion - IBM Cloudant Cloud Object Storage
 
-In this section, you will connect the Orion Onyx using **Node-RED** and the [node-red-contrib-orion](https://flows.nodered.org/node/node-red-contrib-orion) nodes, to the
+In this section you will connect the Orion Onyx using **Node-RED** and the [node-red-contrib-orion](https://flows.nodered.org/node/node-red-contrib-orion) nodes to the Twilio SMS node.  The wav file will be transcribed into a text string and then the text, user and location data will be stored in a Cloudant database in the IBM Cloud.
+
+### IBM Cloudant integration with Onyx Messages
+
+Download the [flow](flows/) and import it into your Node-RED Editor.
+
+![Node-RED Cloudant flow](screenshots/NodeRED-Orion-Cloudant-flow.png)
+
 
 ---
 
