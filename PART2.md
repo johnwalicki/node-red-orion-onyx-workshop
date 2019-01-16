@@ -6,14 +6,26 @@ In this section, you will create a Node-RED Web Starter application in the IBM C
 - Register for a free [IBM Cloud](https://cloud.ibm.com/registration) Lite Account
 - Log into [IBM Cloud](http://cloud.ibm.com)
 
-## Create a Node-RED Web Starter
+## Create a Node-RED Starter application
 
-- Create a [Node-RED Web Starter](https://console.bluemix.net/catalog/starters/node-red-starter)
-- Name your **Orion-Onyx-<yourname>** Node-RED starter
+- Search for **Node-RED** in the Starter Kits
+- Create a [Node-RED Starter](https://console.bluemix.net/catalog/starters/node-red-starter) Cloud Foundry application instance 
+![Node-RED Web Starter](screenshots/NodeRED-Catalog-WebStarter.png)
+- Name your Node-RED Starter **Orion-Onyx-\<yourname\>**
+![IBM Cloud Catalog Create Node-RED Web Starter](screenshots/IBMCloud-NodeRED-Starter.png)
 
 ## Connect Watson AI Services
 
-- Create and Connect Watson AI services (Don't restage them individually, restage after connecting all of them to your Node-RED Starter)
+- Create the following free Watson AI services
+  - [Speech to Text](https://cloud.ibm.com/catalog/services/speech-to-text)
+  - [Text to Speech](https://cloud.ibm.com/catalog/services/text-to-speech)
+  - [Watson Assistant](https://cloud.ibm.com/catalog/services/watson-assistant-formerly-conversation)
+  - [Language Translator](https://cloud.ibm.com/catalog/services/language-translator)
+  - [Natural Language Understanding](https://cloud.ibm.com/catalog/services/natural-language-understanding)
+  - [Tone Analyzer](https://cloud.ibm.com/catalog/services/tone-analyzer)
+  - [Twilio](https://cloud.ibm.com/catalog/services/twilio-programmable-sms)
+- Connect Watson AI services (Don't restage them individually, restage after connecting all of them to your Node-RED Starter)
+- On the Node-RED Starter Application page, select **Connections**  Click on the **Create connection** button. Bind your Watson AI services.
   - Speech to Text
   - Text to Speech
   - Watson Assistant
@@ -21,6 +33,7 @@ In this section, you will create a Node-RED Web Starter application in the IBM C
   - Natural Language Understanding
   - Tone Analyzer
   - Twilio
+![Cloud Foundry Bind Services](screenshots/IBMCloud-NodeRED-Starter-Connections.png)
 
 ## Add Additional Node-RED Nodes
 

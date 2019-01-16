@@ -32,7 +32,7 @@ To help you get familiar with Node-RED and how to integrate with the Orion Onyx 
 ### Authors
 
 - [John Walicki](https://github.com/johnwalicki/)
-
+- [Greg Albrecht](https://github.com/orion-labs)
 ___
 
 Enjoy!  Give us [feedback](https://github.com/johnwalicki/node-red-orion-onyx-workshop/issues) if you have suggestions on how to improve this tutorial.
