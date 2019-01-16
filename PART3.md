@@ -8,9 +8,10 @@
 - You can sign up from within the Orion App on your [iOS](https://itunes.apple.com/us/app/orion-push-to-talk/id984202314) or [Android](https://play.google.com/store/apps/details?id=com.onbeep.obiwan) smart phone.
 - Once you have an account, you will need to use the [Orion Management Console](https://login.orionlabs.io) to get the various keys you will need to configure nodes.
 
-# Connect an Onyx
+# Connect an Onyx or use the Orion AppTalk
 
 - Use the smart phone application to pair an Onyx.
+- If you you don't have an Onyx you can use the Orion AppTalk with an onscreen push to talk button.
 - [Instructions - How to Setup an Onyx](https://support.orionlabs.io/article/94-how-do-i-setup-onyx)
 
 ![Orion Onyx](https://www.orionlabs.io/wp-content/uploads/2018/08/Black-Onyx_diagram.jpg)
