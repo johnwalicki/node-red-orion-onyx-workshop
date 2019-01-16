@@ -1,6 +1,12 @@
 # Node-RED Example: Orion - Watson Speech to Text
 
-In this section, you will connect the Orion Onyx using **Node-RED** and the [node-red-contrib-orion](https://flows.nodered.org/node/node-red-contrib-orion) nodes, to the
+In this section you will connect the Orion Onyx using **Node-RED** and the [node-red-contrib-orion](https://flows.nodered.org/node/node-red-contrib-orion) nodes to the Watson Speech to Text node.  The wav file will be transcribed into a text string.
+
+### Transcribe the Onyx Messages
+
+Download the [flow](flows/) and import it into your Node-RED Editor. 
+
+![Node-RED Speech to Text flow](screenshots/NodeRED-Orion-STT-flow.png)
 
 ---
 
