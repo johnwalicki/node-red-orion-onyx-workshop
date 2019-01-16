@@ -1,6 +1,12 @@
 # Node-RED Example: Orion - Watson Assistant ChatBot
 
-In this section, you will connect the Orion Onyx using **Node-RED** and the [node-red-contrib-orion](https://flows.nodered.org/node/node-red-contrib-orion) nodes, to the
+In this section you will connect the Orion Onyx using **Node-RED** and the [node-red-contrib-orion](https://flows.nodered.org/node/node-red-contrib-orion) nodes to the Twilio SMS node.  The wav file will be transcribed into a text string and then the text will be sent to the Watson Assistant chatbot node. This particular chatbot controls a programmable light bulb.
+
+### Watson Assistant chatbot integration with Onyx Messages
+
+Download the [flow](flows/) and import it into your Node-RED Editor.
+
+![Node-RED Watson Assistant flow](screenshots/NodeRED-Orion-Chatbot-flow.png)
 
 ---
 
