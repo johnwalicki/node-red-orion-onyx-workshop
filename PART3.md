@@ -1,4 +1,4 @@
-# Install the Orion mobile app and and Pair the Onyx
+# Install the Orion mobile app and Pair the Onyx
 
 
 # Requirements
