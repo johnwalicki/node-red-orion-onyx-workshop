@@ -1,12 +1,12 @@
 # Node-RED Orion Onyx Workshop
 
-Node-RED and Watson AI examples using the Orion Onyx smart wearable
+Node-RED and Watson AI examples using the Orion Labs Onyx smart wearable
 
 This repository contains Node-RED flow examples that demonstrate how to connect the Orion Onyx smart wearable to the IBM Cloud and integrate with Watson AI services.
 
 ## Introduction
 
-The [Orion Labs Onyx](https://www.orionlabs.io/orion-onyx/) smart walkie-talkie lets users communicate hands-free over the Internet.  The voice messages are securely stored in the cloud and, using [Node-RED](http://nodered.org) and the [node-red-contrib-orion](https://flows.nodered.org/node/node-red-contrib-orion) nodes, can be decoded.  Once decoded, the message wav file can be transcribed using [Watson Speech to Text](https://console.bluemix.net/catalog/services/speech-to-text). The text can then be integrated with other Watson AI services in interesting and productive ways.  This repository will demonstrate how to combine these technologies. 
+The [Orion Labs Onyx](https://www.orionlabs.io/orion-onyx/) smart walkie-talkie lets users communicate hands-free over the Internet.  The voice messages are securely stored in the cloud and, using [Node-RED](http://nodered.org) and the [node-red-contrib-orion](https://flows.nodered.org/node/node-red-contrib-orion) nodes, can be decoded.  Once decoded, the message wav file can be transcribed using [Watson Speech to Text](https://console.bluemix.net/catalog/services/speech-to-text). The text can then be integrated with other Watson AI services in interesting and productive ways.  This repository will demonstrate how to combine these technologies.  The combination of the Onyx and Watson AI are perfect for first responders, call centers and AI enabled team collaboration.
 
 ## How this git repository is organized
 
