@@ -1,0 +1,72 @@
+[
+    {
+        "id": "34b87a3a.efe0d6",
+        "type": "tab",
+        "label": "Onyx Connect",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "ff3d8990.63eb9",
+        "type": "orion_decode",
+        "z": "34b87a3a.efe0d6",
+        "name": "",
+        "x": 500,
+        "y": 100,
+        "wires": [
+            [
+                "fb4e82f1.4e3de"
+            ]
+        ]
+    },
+    {
+        "id": "17c455e3.a1a1a2",
+        "type": "debug",
+        "z": "34b87a3a.efe0d6",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 470,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "199d92cf.0de26d",
+        "type": "orion_rx",
+        "z": "34b87a3a.efe0d6",
+        "name": "",
+        "orion_config": "69af4a35.32eb9c",
+        "x": 280,
+        "y": 100,
+        "wires": [
+            [
+                "ff3d8990.63eb9",
+                "17c455e3.a1a1a2"
+            ]
+        ]
+    },
+    {
+        "id": "fb4e82f1.4e3de",
+        "type": "debug",
+        "z": "34b87a3a.efe0d6",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 710,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "69af4a35.32eb9c",
+        "type": "orion_config",
+        "z": "",
+        "group": "acf572ab4be140e38728873637f3f38d",
+        "name": ""
+    }
+]

@@ -1,0 +1,729 @@
+[
+    {
+        "id": "a4f4f3ac.4254d8",
+        "type": "tab",
+        "label": "Onyx Chat",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "3f912d3f.bc6bb2",
+        "type": "orion_rx",
+        "z": "a4f4f3ac.4254d8",
+        "name": "",
+        "orion_config": "69af4a35.32eb9c",
+        "x": 130,
+        "y": 60,
+        "wires": [
+            [
+                "8a02ce5f.bc97e8",
+                "b90a2728.c25dc"
+            ]
+        ]
+    },
+    {
+        "id": "837332cd.4d603",
+        "type": "orion_decode",
+        "z": "a4f4f3ac.4254d8",
+        "name": "",
+        "x": 640,
+        "y": 180,
+        "wires": [
+            [
+                "a485bad1.69949",
+                "845e1a6.2ff50e8"
+            ]
+        ]
+    },
+    {
+        "id": "a485bad1.69949",
+        "type": "debug",
+        "z": "a4f4f3ac.4254d8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 830,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "b90a2728.c25dc",
+        "type": "switch",
+        "z": "a4f4f3ac.4254d8",
+        "name": "Transcribe PTT events",
+        "property": "event_type",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "ptt",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 400,
+        "y": 180,
+        "wires": [
+            [
+                "837332cd.4d603"
+            ]
+        ]
+    },
+    {
+        "id": "8b324890.2c6728",
+        "type": "watson-speech-to-text",
+        "z": "a4f4f3ac.4254d8",
+        "name": "",
+        "alternatives": 1,
+        "speakerlabels": true,
+        "smartformatting": false,
+        "lang": "en-US",
+        "langhidden": "en-US",
+        "langcustom": "NoCustomisationSetting",
+        "langcustomhidden": "",
+        "band": "NarrowbandModel",
+        "bandhidden": "NarrowbandModel",
+        "password": "",
+        "apikey": "",
+        "payload-response": false,
+        "streaming-mode": false,
+        "streaming-mute": true,
+        "auto-connect": false,
+        "discard-listening": false,
+        "disable-precheck": false,
+        "default-endpoint": true,
+        "service-endpoint": "https://stream.watsonplatform.net/speech-to-text/api",
+        "x": 420,
+        "y": 280,
+        "wires": [
+            [
+                "4906d3de.e14354",
+                "d69e445a.05e908"
+            ]
+        ]
+    },
+    {
+        "id": "4906d3de.e14354",
+        "type": "debug",
+        "z": "a4f4f3ac.4254d8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "transcription",
+        "x": 650,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "845e1a6.2ff50e8",
+        "type": "change",
+        "z": "a4f4f3ac.4254d8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "media_wav",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 200,
+        "y": 280,
+        "wires": [
+            [
+                "8b324890.2c6728"
+            ]
+        ]
+    },
+    {
+        "id": "8a02ce5f.bc97e8",
+        "type": "debug",
+        "z": "a4f4f3ac.4254d8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 810,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "d69e445a.05e908",
+        "type": "change",
+        "z": "a4f4f3ac.4254d8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "transcription",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 200,
+        "y": 360,
+        "wires": [
+            [
+                "bd4a04fa.34a508"
+            ]
+        ]
+    },
+    {
+        "id": "bd4a04fa.34a508",
+        "type": "watson-conversation-v1",
+        "z": "a4f4f3ac.4254d8",
+        "name": "",
+        "workspaceid": "",
+        "multiuser": false,
+        "context": true,
+        "empty-payload": false,
+        "default-endpoint": true,
+        "service-endpoint": "https://gateway.watsonplatform.net/assistant/api",
+        "timeout": "",
+        "optout-learning": false,
+        "x": 400,
+        "y": 360,
+        "wires": [
+            [
+                "345df138.19f7a6",
+                "88132417.14ced"
+            ]
+        ]
+    },
+    {
+        "id": "4285dbe2.67ffd4",
+        "type": "debug",
+        "z": "a4f4f3ac.4254d8",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 730,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "6400690f.263838",
+        "type": "switch",
+        "z": "a4f4f3ac.4254d8",
+        "name": "Intents",
+        "property": "payload.intents[0].intent",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "SetColor",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "whatcolors",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 2,
+        "x": 310,
+        "y": 480,
+        "wires": [
+            [
+                "6bae7d2e.774d74",
+                "c962961d.2f97b8"
+            ],
+            [
+                "c962961d.2f97b8"
+            ]
+        ]
+    },
+    {
+        "id": "31c412f4.a46ca6",
+        "type": "comment",
+        "z": "a4f4f3ac.4254d8",
+        "name": "Reply to the SlackBot",
+        "info": "",
+        "x": 1020,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "65cba6bf.be4ff",
+        "type": "watson-text-to-speech",
+        "z": "a4f4f3ac.4254d8",
+        "name": "",
+        "lang": "en-US",
+        "langhidden": "en-US",
+        "langcustom": "NoCustomisationSetting",
+        "langcustomhidden": "",
+        "voice": "en-US_MichaelVoice",
+        "voicehidden": "en-US_MichaelVoice",
+        "format": "audio/wav",
+        "password": "",
+        "apikey": "",
+        "payload-response": false,
+        "default-endpoint": false,
+        "service-endpoint": "",
+        "x": 740,
+        "y": 720,
+        "wires": [
+            [
+                "b2b99f98.f070a8",
+                "ec5cb921.1491a"
+            ]
+        ]
+    },
+    {
+        "id": "b2b99f98.f070a8",
+        "type": "debug",
+        "z": "a4f4f3ac.4254d8",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 930,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "ec5cb921.1491a",
+        "type": "change",
+        "z": "a4f4f3ac.4254d8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "speech",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 940,
+        "y": 720,
+        "wires": [
+            [
+                "39d4dc43.408e2c",
+                "e57c0257.2612f"
+            ]
+        ]
+    },
+    {
+        "id": "58255770.44696",
+        "type": "function",
+        "z": "a4f4f3ac.4254d8",
+        "name": "SetColorYellow",
+        "func": "var newmsg = {\"cmd\" : \"setcolor\",\n\"mode\":\"\",\n\"speed\":\"\",\n\"rr\" : 255,\n\"gg\" : 255,\n\"bb\" : 0,\n\"tone\" : msg.topic,   \n\"score\" : msg.payload\n}\nmsg.payload=newmsg ;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 960,
+        "y": 380,
+        "wires": [
+            [
+                "fcf7e91b.7b1a38"
+            ]
+        ]
+    },
+    {
+        "id": "dca0f334.2d6e2",
+        "type": "switch",
+        "z": "a4f4f3ac.4254d8",
+        "name": "SelectColor",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "yellow",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "red",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "blue",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "green",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "purple",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "party",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 7,
+        "x": 730,
+        "y": 480,
+        "wires": [
+            [
+                "58255770.44696"
+            ],
+            [
+                "a98d67e.34d9c98"
+            ],
+            [
+                "39171bec.eabed4"
+            ],
+            [
+                "a6372054.e3a82"
+            ],
+            [
+                "10a54b81.671f3c"
+            ],
+            [
+                "50423b87.736744"
+            ],
+            [
+                "b8b2d9d3.fcf9c8"
+            ]
+        ]
+    },
+    {
+        "id": "a98d67e.34d9c98",
+        "type": "function",
+        "z": "a4f4f3ac.4254d8",
+        "name": "SetColorRed",
+        "func": "var newmsg = {\"cmd\" : \"setcolor\",\n\"mode\":\"\",\n\"speed\":\"\",\n\"rr\" : 255,\n\"gg\" : 0,\n\"bb\" : 0,\n\"tone\" : msg.topic,   \n\"score\" : msg.payload\n}\nmsg.payload=newmsg ;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 950,
+        "y": 420,
+        "wires": [
+            [
+                "fcf7e91b.7b1a38"
+            ]
+        ]
+    },
+    {
+        "id": "a6372054.e3a82",
+        "type": "function",
+        "z": "a4f4f3ac.4254d8",
+        "name": "SetColorGreen",
+        "func": "var newmsg = {\"cmd\" : \"setcolor\",\n\"mode\":\"\",\n\"speed\":\"\",\n\"rr\" : 0,\n\"gg\" : 255,\n\"bb\" : 0,\n\"tone\" : msg.topic,   \n\"score\" : msg.payload\n}\nmsg.payload=newmsg ;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 960,
+        "y": 500,
+        "wires": [
+            [
+                "fcf7e91b.7b1a38"
+            ]
+        ]
+    },
+    {
+        "id": "39171bec.eabed4",
+        "type": "function",
+        "z": "a4f4f3ac.4254d8",
+        "name": "SetColorBlue",
+        "func": "var newmsg = {\"cmd\" : \"setcolor\",\n\"mode\":\"\",\n\"speed\":\"\",\n\"rr\" : 0,\n\"gg\" : 0,\n\"bb\" : 255,\n\"tone\" : msg.topic,   \n\"score\" : msg.payload\n}\nmsg.payload=newmsg ;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 950,
+        "y": 460,
+        "wires": [
+            [
+                "fcf7e91b.7b1a38"
+            ]
+        ]
+    },
+    {
+        "id": "fcf7e91b.7b1a38",
+        "type": "debug",
+        "z": "a4f4f3ac.4254d8",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 1210,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "b8b2d9d3.fcf9c8",
+        "type": "function",
+        "z": "a4f4f3ac.4254d8",
+        "name": "SetColorOtherOff",
+        "func": "var newmsg = {\"cmd\" : \"setcolor\",\n\"mode\":\"\",\n\"speed\":\"\",\n\"rr\" : 0,\n\"gg\" : 0,\n\"bb\" : 0,\n\"tone\" : msg.topic,   \n\"score\" : msg.payload\n}\nmsg.payload=newmsg ;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 970,
+        "y": 620,
+        "wires": [
+            [
+                "fcf7e91b.7b1a38"
+            ]
+        ]
+    },
+    {
+        "id": "10a54b81.671f3c",
+        "type": "function",
+        "z": "a4f4f3ac.4254d8",
+        "name": "SetColorPurple",
+        "func": "var newmsg = {\"cmd\" : \"setcolor\",\n\"mode\":\"\",\n\"speed\":\"\",\n\"rr\" : 238,\n\"gg\" : 130,\n\"bb\" : 238,\n\"tone\" : msg.topic,   \n\"score\" : msg.payload\n}\nmsg.payload=newmsg ;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 960,
+        "y": 540,
+        "wires": [
+            [
+                "fcf7e91b.7b1a38"
+            ]
+        ]
+    },
+    {
+        "id": "50423b87.736744",
+        "type": "function",
+        "z": "a4f4f3ac.4254d8",
+        "name": "SetColor Party!",
+        "func": "var playbulbmsg = {\"cmd\" : \"setcolor\",\n// modes: 01 = Fade, 02 = Jump RBG (rainbow), 03 = Fade RGB (rainbow), 04 = Candle Effect\n\"mode\":2,\n\"speed1\":9,\n\"speed2\":0,\n\"rr\" : 0,\n\"gg\" : 0,\n\"bb\" : 255\n}\nmsg.payload=playbulbmsg ;\nmsg.eventOrCommandType = \"setCandleMode\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 960,
+        "y": 580,
+        "wires": [
+            [
+                "fcf7e91b.7b1a38"
+            ]
+        ]
+    },
+    {
+        "id": "7f48a1bb.2461d",
+        "type": "debug",
+        "z": "a4f4f3ac.4254d8",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 730,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "6bae7d2e.774d74",
+        "type": "change",
+        "z": "a4f4f3ac.4254d8",
+        "name": "Color Entities",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.entities[0].value",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 520,
+        "y": 480,
+        "wires": [
+            [
+                "7f48a1bb.2461d",
+                "dca0f334.2d6e2"
+            ]
+        ]
+    },
+    {
+        "id": "c962961d.2f97b8",
+        "type": "function",
+        "z": "a4f4f3ac.4254d8",
+        "name": "Watson Conversation Reply",
+        "func": "var response = msg.payload.output.text[0] ;\n//if (typeof msg.payload.entities[0] !== 'undefined') {\n//    if (typeof msg.payload.entities[0].value !== 'undefined') {\n//        response = response +\" to \"+ msg.payload.entities[0].value ;\n//    }\n//}\nmsg.payload = response;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 480,
+        "y": 720,
+        "wires": [
+            [
+                "65cba6bf.be4ff",
+                "4285dbe2.67ffd4"
+            ]
+        ]
+    },
+    {
+        "id": "e57c0257.2612f",
+        "type": "debug",
+        "z": "a4f4f3ac.4254d8",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 1130,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "345df138.19f7a6",
+        "type": "function",
+        "z": "a4f4f3ac.4254d8",
+        "name": "",
+        "func": "if( typeof msg.payload.intents != 'undefined') {\n    if( typeof msg.payload.intents[0].intent != 'undefined') {\n        return msg;\n    }\n}\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 170,
+        "y": 480,
+        "wires": [
+            [
+                "6400690f.263838"
+            ]
+        ]
+    },
+    {
+        "id": "39d4dc43.408e2c",
+        "type": "play audio",
+        "z": "a4f4f3ac.4254d8",
+        "name": "",
+        "x": 1130,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "88132417.14ced",
+        "type": "debug",
+        "z": "a4f4f3ac.4254d8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 630,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "6139943c.06743c",
+        "type": "orion_encode",
+        "z": "a4f4f3ac.4254d8",
+        "name": "",
+        "x": 420,
+        "y": 1000,
+        "wires": [
+            [
+                "b76e7cd2.a4a33"
+            ]
+        ]
+    },
+    {
+        "id": "b76e7cd2.a4a33",
+        "type": "orion_tx",
+        "z": "a4f4f3ac.4254d8",
+        "name": "",
+        "orion_config": "69af4a35.32eb9c",
+        "x": 770,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "7d5d0d3f.3e469c",
+        "type": "change",
+        "z": "a4f4f3ac.4254d8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "media_buf",
+                "pt": "msg",
+                "to": "speech",
+                "tot": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "media",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "media_wav",
+                "pt": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 200,
+        "y": 1000,
+        "wires": [
+            [
+                "6139943c.06743c"
+            ]
+        ]
+    },
+    {
+        "id": "2c2f6e21.83460a",
+        "type": "switch",
+        "z": "a4f4f3ac.4254d8",
+        "name": "",
+        "property": "user_info.name",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "neq",
+                "v": "John Walicki",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 610,
+        "y": 320,
+        "wires": [
+            [
+                "d69e445a.05e908"
+            ]
+        ]
+    },
+    {
+        "id": "69af4a35.32eb9c",
+        "type": "orion_config",
+        "z": "",
+        "group": "acf572ab4be140e38728873637f3f38d",
+        "name": ""
+    }
+]

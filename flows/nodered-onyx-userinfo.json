@@ -1,0 +1,73 @@
+[
+    {
+        "id": "af9619aa.f96448",
+        "type": "tab",
+        "label": "Onyx User",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "f0486d7c.fda1d8",
+        "type": "orion_rx",
+        "z": "af9619aa.f96448",
+        "name": "",
+        "orion_config": "69af4a35.32eb9c",
+        "x": 130,
+        "y": 120,
+        "wires": [
+            [
+                "104ae9d5.6cd636",
+                "7f5d4872.6bde7"
+            ]
+        ]
+    },
+    {
+        "id": "104ae9d5.6cd636",
+        "type": "debug",
+        "z": "af9619aa.f96448",
+        "name": "Msg Received",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 500,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "7f5d4872.6bde7",
+        "type": "orion_lookup",
+        "z": "af9619aa.f96448",
+        "name": "",
+        "orion_config": "69af4a35.32eb9c",
+        "x": 300,
+        "y": 180,
+        "wires": [
+            [
+                "9b65b73a.a964d"
+            ]
+        ]
+    },
+    {
+        "id": "9b65b73a.a964d",
+        "type": "debug",
+        "z": "af9619aa.f96448",
+        "name": "User Info",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 480,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "69af4a35.32eb9c",
+        "type": "orion_config",
+        "z": "",
+        "group": "acf572ab4be140e38728873637f3f38d",
+        "name": ""
+    }
+]

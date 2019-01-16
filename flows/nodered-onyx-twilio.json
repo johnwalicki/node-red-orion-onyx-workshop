@@ -1,0 +1,479 @@
+[
+    {
+        "id": "cb663d35.0d79d",
+        "type": "tab",
+        "label": "Onyx SMS",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "49fcb6f.67056c8",
+        "type": "orion_rx",
+        "z": "cb663d35.0d79d",
+        "name": "",
+        "orion_config": "69af4a35.32eb9c",
+        "x": 130,
+        "y": 100,
+        "wires": [
+            [
+                "c20c1baf.f1997",
+                "8c2d5428.dd552"
+            ]
+        ]
+    },
+    {
+        "id": "a209040b.9d3a8",
+        "type": "orion_decode",
+        "z": "cb663d35.0d79d",
+        "name": "",
+        "x": 620,
+        "y": 200,
+        "wires": [
+            [
+                "28184972.29ae2e",
+                "7cbac9d0.432a08"
+            ]
+        ]
+    },
+    {
+        "id": "28184972.29ae2e",
+        "type": "debug",
+        "z": "cb663d35.0d79d",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 810,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "8c2d5428.dd552",
+        "type": "switch",
+        "z": "cb663d35.0d79d",
+        "name": "Transcribe PTT events",
+        "property": "event_type",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "ptt",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 380,
+        "y": 200,
+        "wires": [
+            [
+                "a209040b.9d3a8"
+            ]
+        ]
+    },
+    {
+        "id": "8b6fca07.bc0968",
+        "type": "watson-speech-to-text",
+        "z": "cb663d35.0d79d",
+        "name": "",
+        "alternatives": 1,
+        "speakerlabels": true,
+        "smartformatting": false,
+        "lang": "en-US",
+        "langhidden": "en-US",
+        "langcustom": "NoCustomisationSetting",
+        "langcustomhidden": "",
+        "band": "NarrowbandModel",
+        "bandhidden": "NarrowbandModel",
+        "password": "",
+        "apikey": "",
+        "payload-response": false,
+        "streaming-mode": false,
+        "streaming-mute": true,
+        "auto-connect": false,
+        "discard-listening": false,
+        "disable-precheck": false,
+        "default-endpoint": true,
+        "service-endpoint": "https://stream.watsonplatform.net/speech-to-text/api",
+        "x": 400,
+        "y": 300,
+        "wires": [
+            [
+                "4eaf1b2.dd8b864",
+                "e324227d.a81958"
+            ]
+        ]
+    },
+    {
+        "id": "4eaf1b2.dd8b864",
+        "type": "debug",
+        "z": "cb663d35.0d79d",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "transcription",
+        "x": 630,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "7cbac9d0.432a08",
+        "type": "change",
+        "z": "cb663d35.0d79d",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "media_wav",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 180,
+        "y": 300,
+        "wires": [
+            [
+                "8b6fca07.bc0968"
+            ]
+        ]
+    },
+    {
+        "id": "c20c1baf.f1997",
+        "type": "debug",
+        "z": "cb663d35.0d79d",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 510,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "88aaa7e.fee97d8",
+        "type": "twilio out",
+        "z": "cb663d35.0d79d",
+        "service": "Twilio-zz",
+        "twilio": "",
+        "from": "",
+        "number": "",
+        "name": "",
+        "x": 380,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "e324227d.a81958",
+        "type": "change",
+        "z": "cb663d35.0d79d",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "transcription",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 180,
+        "y": 380,
+        "wires": [
+            [
+                "88aaa7e.fee97d8"
+            ]
+        ]
+    },
+    {
+        "id": "ee09b4d5.27b46",
+        "type": "inject",
+        "z": "cb663d35.0d79d",
+        "name": "Call me Now",
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 130,
+        "y": 940,
+        "wires": [
+            [
+                "fea7dfcd.a2b4d"
+            ]
+        ]
+    },
+    {
+        "id": "fea7dfcd.a2b4d",
+        "type": "function",
+        "z": "cb663d35.0d79d",
+        "name": "Twilio Voice Payload",
+        "func": "return {\n     payload : {\"From\":\"\",\n                \"To\":\"\",\n                \"Url\":\"http://demo.twilio.com/docs/voice.xml\"\n     }, \n     headers : { \"Content-Type\":\"application/x-www-form-urlencoded\" }\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 330,
+        "y": 940,
+        "wires": [
+            [
+                "9c5529b2.fcee8"
+            ]
+        ]
+    },
+    {
+        "id": "9c5529b2.fcee8",
+        "type": "http request",
+        "z": "cb663d35.0d79d",
+        "name": "Twilio API Call",
+        "method": "POST",
+        "ret": "txt",
+        "url": "https://api.twilio.com/2010-04-01/Accounts/sid-here/Calls.json",
+        "tls": "",
+        "x": 550,
+        "y": 940,
+        "wires": [
+            [
+                "a4a08043.e76ce8"
+            ]
+        ]
+    },
+    {
+        "id": "a4a08043.e76ce8",
+        "type": "debug",
+        "z": "cb663d35.0d79d",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 790,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "ed500447.1bdf48",
+        "type": "comment",
+        "z": "cb663d35.0d79d",
+        "name": "Twilio Voice Call",
+        "info": "",
+        "x": 120,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "5f6f6557.4f0fc4",
+        "type": "http in",
+        "z": "cb663d35.0d79d",
+        "name": "",
+        "url": "/twilio",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 110,
+        "y": 1000,
+        "wires": [
+            [
+                "4060c88e.7506f8",
+                "d12443e8.ba7af"
+            ]
+        ]
+    },
+    {
+        "id": "4060c88e.7506f8",
+        "type": "debug",
+        "z": "cb663d35.0d79d",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 290,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "ae174c54.467b08",
+        "type": "http response",
+        "z": "cb663d35.0d79d",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 490,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "d12443e8.ba7af",
+        "type": "change",
+        "z": "cb663d35.0d79d",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "http://www.lapis-semi.com/en/data/speech-lsi_sample-audio-data/44.1k_8nonPCM_eng.mp3",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "header",
+                "pt": "msg",
+                "to": "{\"Content-Type\":\"audio/mpeg\"}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 300,
+        "y": 1040,
+        "wires": [
+            [
+                "ae174c54.467b08",
+                "1afe781b.86395"
+            ]
+        ]
+    },
+    {
+        "id": "1afe781b.86395",
+        "type": "debug",
+        "z": "cb663d35.0d79d",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 520,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "323628ae.7668c8",
+        "type": "change",
+        "z": "cb663d35.0d79d",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "message",
+                "pt": "msg",
+                "to": "payload.Body",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 390,
+        "y": 560,
+        "wires": [
+            [
+                "f43b6356.5d52b8"
+            ]
+        ]
+    },
+    {
+        "id": "5ee69801.68fd8",
+        "type": "http in",
+        "z": "cb663d35.0d79d",
+        "name": "Twilio POST Endpoint",
+        "url": "/sms2onyx",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 160,
+        "y": 560,
+        "wires": [
+            [
+                "53f7a95f.fa986",
+                "323628ae.7668c8",
+                "c4314c48.7bfab"
+            ]
+        ]
+    },
+    {
+        "id": "53f7a95f.fa986",
+        "type": "http response",
+        "z": "cb663d35.0d79d",
+        "name": "",
+        "statusCode": "201",
+        "headers": {},
+        "x": 360,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "f43b6356.5d52b8",
+        "type": "orion_tx",
+        "z": "cb663d35.0d79d",
+        "name": "Group TX",
+        "orion_config": "69af4a35.32eb9c",
+        "x": 580,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "c4314c48.7bfab",
+        "type": "debug",
+        "z": "cb663d35.0d79d",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 370,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "540cd00.7dfa83",
+        "type": "comment",
+        "z": "cb663d35.0d79d",
+        "name": "Send Messages from Orion Group to SMS",
+        "info": "",
+        "x": 200,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "2ee33f9f.1c3",
+        "type": "comment",
+        "z": "cb663d35.0d79d",
+        "name": "Send Messages from SMS to Orion Group",
+        "info": "",
+        "x": 200,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "69af4a35.32eb9c",
+        "type": "orion_config",
+        "z": "",
+        "group": "",
+        "name": ""
+    }
+]

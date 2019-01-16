@@ -1,0 +1,610 @@
+[
+    {
+        "id": "67ec8f58.ee9e88",
+        "type": "tab",
+        "label": "Orion Users Map",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "f66fc321.26f6b",
+        "type": "debug",
+        "z": "67ec8f58.ee9e88",
+        "name": "Payload",
+        "active": true,
+        "console": "false",
+        "complete": "payload",
+        "x": 840,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "d56a9f22.b311e8",
+        "type": "switch",
+        "z": "67ec8f58.ee9e88",
+        "name": "Sentiment color",
+        "property": "payload.sentiment",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "num"
+            },
+            {
+                "t": "gt",
+                "v": "0",
+                "vt": "str"
+            },
+            {
+                "t": "lt",
+                "v": "0",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 360,
+        "y": 720,
+        "wires": [
+            [
+                "7108fa0d.d41694"
+            ],
+            [
+                "2ad7f1c3.44dd8e"
+            ],
+            [
+                "c1028b68.48a43"
+            ]
+        ],
+        "inputLabels": [
+            "sentiment"
+        ],
+        "outputLabels": [
+            "neutral",
+            "postive",
+            ""
+        ]
+    },
+    {
+        "id": "7108fa0d.d41694",
+        "type": "change",
+        "z": "67ec8f58.ee9e88",
+        "name": "Set to grey",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.iconColor",
+                "pt": "msg",
+                "to": "grey",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 610,
+        "y": 660,
+        "wires": [
+            [
+                "393cf584.b02fd2",
+                "f66fc321.26f6b"
+            ]
+        ]
+    },
+    {
+        "id": "2ad7f1c3.44dd8e",
+        "type": "change",
+        "z": "67ec8f58.ee9e88",
+        "name": "Set to green",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.iconColor",
+                "pt": "msg",
+                "to": "green",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 610,
+        "y": 720,
+        "wires": [
+            [
+                "393cf584.b02fd2",
+                "f66fc321.26f6b"
+            ]
+        ]
+    },
+    {
+        "id": "c1028b68.48a43",
+        "type": "change",
+        "z": "67ec8f58.ee9e88",
+        "name": "Set to red",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.iconColor",
+                "pt": "msg",
+                "to": "red",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 600,
+        "y": 780,
+        "wires": [
+            [
+                "393cf584.b02fd2",
+                "f66fc321.26f6b"
+            ]
+        ]
+    },
+    {
+        "id": "393cf584.b02fd2",
+        "type": "worldmap",
+        "z": "67ec8f58.ee9e88",
+        "name": "",
+        "lat": "40.97866410393359",
+        "lon": "-74.10019512295173",
+        "zoom": "13",
+        "layer": "Esri",
+        "cluster": "",
+        "maxage": "",
+        "usermenu": "show",
+        "layers": "show",
+        "panit": "true",
+        "path": "",
+        "x": 850,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "eea9a744.db6188",
+        "type": "sentiment",
+        "z": "67ec8f58.ee9e88",
+        "name": "",
+        "property": "payload",
+        "x": 440,
+        "y": 520,
+        "wires": [
+            [
+                "599ab399.bcb35c",
+                "24e69758.67df7"
+            ]
+        ]
+    },
+    {
+        "id": "c99c470f.5e65c",
+        "type": "ui_text",
+        "z": "67ec8f58.ee9e88",
+        "group": "13c32a78.9f8a2e",
+        "order": 2,
+        "width": "10",
+        "height": "3",
+        "name": "Transcript",
+        "label": "{{msg.sender_name}}",
+        "format": "{{msg.transcription}}",
+        "layout": "row-spread",
+        "x": 640,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "bc5aaf99.77a428",
+        "type": "ui_gauge",
+        "z": "67ec8f58.ee9e88",
+        "name": "",
+        "group": "13c32a78.9f8a2e",
+        "order": 4,
+        "width": "10",
+        "height": "8",
+        "gtype": "gage",
+        "title": "Sentiment",
+        "label": "units",
+        "format": "{{value}}",
+        "min": "-10",
+        "max": 10,
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 870,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "599ab399.bcb35c",
+        "type": "change",
+        "z": "67ec8f58.ee9e88",
+        "name": "Sentiment Score",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "sentiment.score",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 650,
+        "y": 500,
+        "wires": [
+            [
+                "bc5aaf99.77a428",
+                "7203e543.f5a1a4"
+            ]
+        ]
+    },
+    {
+        "id": "4d367d37.0ebd04",
+        "type": "inject",
+        "z": "67ec8f58.ee9e88",
+        "name": "Init Dashboard",
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "x": 140,
+        "y": 40,
+        "wires": [
+            [
+                "c669a23b.b1f41"
+            ]
+        ]
+    },
+    {
+        "id": "c669a23b.b1f41",
+        "type": "function",
+        "z": "67ec8f58.ee9e88",
+        "name": "Inject /worldmap",
+        "func": "msg.payload = \"/worldmap\";\nmsg.payload.command = {};\n\nvar u = 'http://{s}.tile.openstreetmap.org/hot/{z}/{x}/{y}.png';\nvar o = JSON.stringify({ maxZoom: 19, attribution: '&copy; OpenStreetMap'});\n\nmsg.payload.command =   {\n                        layer:\"Esri\",\n                        lat:18.44081,\n                        lon:-66.08068,                        \n                        zoom:2,\n                        map: {name:\"Esri\", url:u, opt:o},\n                        };\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 360,
+        "y": 40,
+        "wires": [
+            [
+                "5044e1a6.a2c91"
+            ]
+        ]
+    },
+    {
+        "id": "5044e1a6.a2c91",
+        "type": "template",
+        "z": "67ec8f58.ee9e88",
+        "name": "Add Map to Dashboard",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<iframe src={{{payload}}} height=624px width=768px></iframe>",
+        "x": 610,
+        "y": 40,
+        "wires": [
+            [
+                "ecfb1bc7.d8bf38"
+            ]
+        ]
+    },
+    {
+        "id": "ecfb1bc7.d8bf38",
+        "type": "ui_template",
+        "z": "67ec8f58.ee9e88",
+        "group": "3037bac8.aa1606",
+        "name": "Embedded Map",
+        "order": 0,
+        "width": "16",
+        "height": "13",
+        "format": "<div ng-bind-html=\"msg.payload | trusted\"></div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 860,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7203e543.f5a1a4",
+        "type": "debug",
+        "z": "67ec8f58.ee9e88",
+        "name": "Sentiment Score",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 890,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "caeb5094.4fef98",
+        "type": "orion_decode",
+        "z": "67ec8f58.ee9e88",
+        "name": "",
+        "x": 640,
+        "y": 280,
+        "wires": [
+            [
+                "8ae132c8.f93338",
+                "fc70ab66.bc37a"
+            ]
+        ]
+    },
+    {
+        "id": "8ae132c8.f93338",
+        "type": "debug",
+        "z": "67ec8f58.ee9e88",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 830,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "95bbfad9.48deb8",
+        "type": "switch",
+        "z": "67ec8f58.ee9e88",
+        "name": "Transcribe PTT events",
+        "property": "event_type",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "ptt",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 400,
+        "y": 280,
+        "wires": [
+            [
+                "caeb5094.4fef98"
+            ]
+        ]
+    },
+    {
+        "id": "e1e60450.6c9698",
+        "type": "debug",
+        "z": "67ec8f58.ee9e88",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 350,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "35492.3623fb6ec",
+        "type": "watson-speech-to-text",
+        "z": "67ec8f58.ee9e88",
+        "name": "",
+        "alternatives": 1,
+        "speakerlabels": true,
+        "smartformatting": false,
+        "lang": "en-US",
+        "langhidden": "en-US",
+        "langcustom": "NoCustomisationSetting",
+        "langcustomhidden": "",
+        "band": "NarrowbandModel",
+        "bandhidden": "NarrowbandModel",
+        "password": "",
+        "apikey": "",
+        "payload-response": false,
+        "streaming-mode": false,
+        "streaming-mute": true,
+        "auto-connect": false,
+        "discard-listening": false,
+        "disable-precheck": false,
+        "default-endpoint": true,
+        "service-endpoint": "https://stream.watsonplatform.net/speech-to-text/api",
+        "x": 440,
+        "y": 380,
+        "wires": [
+            [
+                "c3a1d61d.26fe88",
+                "c99c470f.5e65c",
+                "d7b8f10f.b24b9"
+            ]
+        ]
+    },
+    {
+        "id": "c3a1d61d.26fe88",
+        "type": "debug",
+        "z": "67ec8f58.ee9e88",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "transcription",
+        "x": 670,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "fc70ab66.bc37a",
+        "type": "change",
+        "z": "67ec8f58.ee9e88",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "media_wav",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 220,
+        "y": 380,
+        "wires": [
+            [
+                "35492.3623fb6ec"
+            ]
+        ]
+    },
+    {
+        "id": "d7b8f10f.b24b9",
+        "type": "change",
+        "z": "67ec8f58.ee9e88",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "transcription",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 220,
+        "y": 520,
+        "wires": [
+            [
+                "eea9a744.db6188"
+            ]
+        ]
+    },
+    {
+        "id": "24e69758.67df7",
+        "type": "orion_lookup",
+        "z": "67ec8f58.ee9e88",
+        "name": "",
+        "orion_config": "69af4a35.32eb9c",
+        "x": 220,
+        "y": 600,
+        "wires": [
+            [
+                "866d5967.a3c5e8",
+                "a9e7ea83.e165e8"
+            ]
+        ]
+    },
+    {
+        "id": "866d5967.a3c5e8",
+        "type": "function",
+        "z": "67ec8f58.ee9e88",
+        "name": "Build Map Details",
+        "func": "msg.payload = {\n        name      : msg.sender_name,\n        icon      : \"fa-twitter-square\",\n        lat       : msg.userstatus_info.location.lat,\n        lon       : msg.userstatus_info.location.lng,\n        sentiment : msg.sentiment.score,\n        transcript: msg.transcription,\n        command   : { zoom:13, autopan:true }\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 430,
+        "y": 600,
+        "wires": [
+            [
+                "d56a9f22.b311e8"
+            ]
+        ]
+    },
+    {
+        "id": "7a0135c1.771aa4",
+        "type": "orion_rx",
+        "z": "67ec8f58.ee9e88",
+        "name": "Watson Playground",
+        "orion_config": "69af4a35.32eb9c",
+        "x": 150,
+        "y": 200,
+        "wires": [
+            [
+                "e1e60450.6c9698",
+                "95bbfad9.48deb8"
+            ]
+        ]
+    },
+    {
+        "id": "a9e7ea83.e165e8",
+        "type": "debug",
+        "z": "67ec8f58.ee9e88",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 190,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "13c32a78.9f8a2e",
+        "type": "ui_group",
+        "z": "",
+        "name": "Global Orion",
+        "tab": "2967f1b5.0532fe",
+        "order": 1,
+        "disp": true,
+        "width": "10",
+        "collapse": false
+    },
+    {
+        "id": "3037bac8.aa1606",
+        "type": "ui_group",
+        "z": "",
+        "name": "Global Orion Map",
+        "tab": "2967f1b5.0532fe",
+        "order": 2,
+        "disp": true,
+        "width": "16",
+        "collapse": false
+    },
+    {
+        "id": "69af4a35.32eb9c",
+        "type": "orion_config",
+        "z": "",
+        "group": "acf572ab4be140e38728873637f3f38d",
+        "name": ""
+    },
+    {
+        "id": "2967f1b5.0532fe",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Orion Map",
+        "icon": "dashboard",
+        "order": 1
+    }
+]

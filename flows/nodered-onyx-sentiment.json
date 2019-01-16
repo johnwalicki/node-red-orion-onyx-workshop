@@ -1,0 +1,288 @@
+[
+    {
+        "id": "52a19ce3.d6319c",
+        "type": "tab",
+        "label": "Onyx Sentiment",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "c7345ac5.803d8",
+        "type": "orion_rx",
+        "z": "52a19ce3.d6319c",
+        "name": "",
+        "orion_config": "69af4a35.32eb9c",
+        "x": 150,
+        "y": 120,
+        "wires": [
+            [
+                "8fb83244.528fe",
+                "ff4ef5b2.e71a6"
+            ]
+        ]
+    },
+    {
+        "id": "f4c58076.b6b51",
+        "type": "orion_decode",
+        "z": "52a19ce3.d6319c",
+        "name": "",
+        "x": 600,
+        "y": 200,
+        "wires": [
+            [
+                "d117319e.19a5b",
+                "4b8ecebc.9d3df8"
+            ]
+        ]
+    },
+    {
+        "id": "d117319e.19a5b",
+        "type": "debug",
+        "z": "52a19ce3.d6319c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 790,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "ff4ef5b2.e71a6",
+        "type": "switch",
+        "z": "52a19ce3.d6319c",
+        "name": "Transcribe PTT events",
+        "property": "event_type",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "ptt",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 360,
+        "y": 200,
+        "wires": [
+            [
+                "f4c58076.b6b51"
+            ]
+        ]
+    },
+    {
+        "id": "5d74be1c.63ee28",
+        "type": "watson-speech-to-text",
+        "z": "52a19ce3.d6319c",
+        "name": "",
+        "alternatives": 1,
+        "speakerlabels": true,
+        "smartformatting": false,
+        "lang": "en-US",
+        "langhidden": "en-US",
+        "langcustom": "NoCustomisationSetting",
+        "langcustomhidden": "",
+        "band": "NarrowbandModel",
+        "bandhidden": "NarrowbandModel",
+        "password": "",
+        "apikey": "",
+        "payload-response": false,
+        "streaming-mode": false,
+        "streaming-mute": true,
+        "auto-connect": false,
+        "discard-listening": false,
+        "disable-precheck": false,
+        "default-endpoint": true,
+        "service-endpoint": "https://stream.watsonplatform.net/speech-to-text/api",
+        "x": 380,
+        "y": 300,
+        "wires": [
+            [
+                "c7f6f1ab.db2278",
+                "95394a04.ccd0b8"
+            ]
+        ]
+    },
+    {
+        "id": "c7f6f1ab.db2278",
+        "type": "debug",
+        "z": "52a19ce3.d6319c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "transcription",
+        "x": 610,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "4b8ecebc.9d3df8",
+        "type": "change",
+        "z": "52a19ce3.d6319c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "media_wav",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 160,
+        "y": 300,
+        "wires": [
+            [
+                "5d74be1c.63ee28"
+            ]
+        ]
+    },
+    {
+        "id": "8fb83244.528fe",
+        "type": "debug",
+        "z": "52a19ce3.d6319c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 810,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "8383ebd9.fa26",
+        "type": "sentiment",
+        "z": "52a19ce3.d6319c",
+        "name": "",
+        "property": "payload",
+        "x": 360,
+        "y": 380,
+        "wires": [
+            [
+                "7e09092c.d057b8"
+            ]
+        ]
+    },
+    {
+        "id": "95394a04.ccd0b8",
+        "type": "change",
+        "z": "52a19ce3.d6319c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "transcription",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 160,
+        "y": 380,
+        "wires": [
+            [
+                "8383ebd9.fa26"
+            ]
+        ]
+    },
+    {
+        "id": "7e09092c.d057b8",
+        "type": "change",
+        "z": "52a19ce3.d6319c",
+        "name": "Sentiment Score",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "sentiment.score",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 610,
+        "y": 380,
+        "wires": [
+            [
+                "33c34ade.cb7c1e",
+                "ad480379.c1f788"
+            ]
+        ]
+    },
+    {
+        "id": "33c34ade.cb7c1e",
+        "type": "debug",
+        "z": "52a19ce3.d6319c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 810,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "ad480379.c1f788",
+        "type": "template",
+        "z": "52a19ce3.d6319c",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "The message : \"{{transcription}}\" had a sentiment score of {{payload}} !",
+        "output": "str",
+        "x": 320,
+        "y": 500,
+        "wires": [
+            [
+                "51f8df58.54112"
+            ]
+        ]
+    },
+    {
+        "id": "51f8df58.54112",
+        "type": "debug",
+        "z": "52a19ce3.d6319c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 510,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "69af4a35.32eb9c",
+        "type": "orion_config",
+        "z": "",
+        "group": "acf572ab4be140e38728873637f3f38d",
+        "name": ""
+    }
+]
