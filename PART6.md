@@ -4,7 +4,7 @@ In this section you will connect the Orion Onyx using **Node-RED** and the [node
 
 ### Sentiment Analysis of the Onyx Messages
 
-Download the [flow](flows/) and import it into your Node-RED Editor. 
+Download the [flow](flows/nodered-onyx-sentiment.json) and import it into your Node-RED Editor. 
 
 ![Node-RED Sentiment flow](screenshots/NodeRED-Orion-Sentiment-flow.png)
 
