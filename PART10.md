@@ -1,10 +1,10 @@
 # Node-RED Example: Orion - Twilio SMS
 
-In this section you will connect the Orion Onyx using **Node-RED** and the [node-red-contrib-orion](https://flows.nodered.org/node/node-red-contrib-orion) nodes to the Twilio SMS node.  The wav file will be transcribed into a text string and then the text will be sent to the Twilio SMS node. TXT messages to my Twilio phone number will be sent to the Onyx group. T
+In this section you will connect the Orion Onyx using **Node-RED** and the [node-red-contrib-orion](https://flows.nodered.org/node/node-red-contrib-orion) nodes to the Twilio SMS node.  The wav file will be transcribed into a text string and then the text will be sent to the Twilio SMS node. TXT messages to my Twilio phone number will be sent to the Onyx group.  To send SMS messages, you will need to sign up for a [Twilio account](https://www.twilio.com/login)
 
 ### Twilio integration with Onyx Messages
 
-Download the [flow](flows/) and import it into your Node-RED Editor.
+Download the [flow](flows/nodered-onyx-twilio.json) and import it into your Node-RED Editor.
 
 ![Node-RED Twilio flow](screenshots/NodeRED-Orion-Twilio-flow.png)
 
